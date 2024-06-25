@@ -50,8 +50,6 @@ GAME_PLAY(){
     fi
   done
   #if the player got the guess right, then the loop breaks
-  #congratulate the player
-  echo "You guessed it in $NUM_GUESS tries. The secret number was $RAND. Nice job!"
 
   #check for BEST_GAME
   #check to see if this is their first game finished
@@ -73,6 +71,9 @@ GAME_PLAY(){
   SET games_played = $GAMES_PLAYED, 
   best_game = $BEST_GAME 
   WHERE username = '$USERNAME'")
+
+  #congratulate the player
+  echo "You guessed it in $NUM_GUESS tries. The secret number was $RAND. Nice job!"
 
   
 }
