@@ -5,7 +5,7 @@ GAME_PLAY(){
   #Assign names to the argument variables
   USERNAME=$1
   #add one to games played since we have started a new game
-  GAMES_PLAYED=($2 + 1)
+  GAMES_PLAYED=$(($2 + 1))
   BEST_GAME=$3
 
   #Generate a random number and ask the user to guess
@@ -23,27 +23,26 @@ GAME_PLAY(){
   do
     #ask for a guess
     read GUESS
-    
+    #number of guess up by one
+    NUM_GUESS=$(($NUM_GUESS + 1))
+  
     #if guess is not an integer
     if [[ ! $GUESS =~ ^[0-9]+$ ]]
     #then we ask for and integer and start the loop again
     then
-      echo "That is not and integer, guess again:"
+      echo "That is not an integer, guess again:"
 
     #otherwise it must be an INT
     else
-      #number of guess up by one
-      NUM_GUESS=($NUM_GUESS + 1)
-
       #was the guess higher or lower?
       #if lower
-      if [[ $GUESS < $RAND ]]
+      if [[ $GUESS -lt $RAND ]]
       #tell the player RAND was higher
       then
         echo "It's higher than that, guess again:"
 
       #if higher
-      elif [[ $GUESS > $RAND ]]
+      elif [[ $GUESS -gt $RAND ]]
       #tell player RAND was lower
       then
         echo "It's lower than that, guess again:"
@@ -101,7 +100,7 @@ MAIN(){
   fi
 
   #play the game
-  GAME_PLAY USERNAME GAMES_PLAYED BEST_GAME
+  GAME_PLAY $USERNAME $GAMES_PLAYED $BEST_GAME
 }
 
 #Call the main fucntion
